@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"log"
 	"strings"
 )
 
@@ -263,25 +262,25 @@ func (client *Client) ListAllTags(start_instance uint32) error {
 // because they aren't valid for reading/writing.
 func isValidTag(tag_string string, tag_ftr TagInfo) bool {
 	if !tag_ftr.Atomic() && tag_ftr.PreDefined() && verbose {
-		log.Printf("Skipping Tag: '%s' Type: %s/%d[%d,%d,%d].  Template %d",
-			tag_string,
-			tag_ftr.Type,
-			tag_ftr.TypeInfo,
-			tag_ftr.Dimension1,
-			tag_ftr.Dimension2,
-			tag_ftr.Dimension3,
-			tag_ftr.Template_ID(),
-		)
+		// log.Printf("Skipping Tag: '%s' Type: %s/%d[%d,%d,%d].  Template %d",
+		// 	tag_string,
+		// 	tag_ftr.Type,
+		// 	tag_ftr.TypeInfo,
+		// 	tag_ftr.Dimension1,
+		// 	tag_ftr.Dimension2,
+		// 	tag_ftr.Dimension3,
+		// 	tag_ftr.Template_ID(),
+		// )
 	}
 	if tag_string[:2] == "__" {
 		if verbose {
-			log.Printf("Skipping Tag: '%s' because it starts with '__'", tag_string)
+			// log.Printf("Skipping Tag: '%s' because it starts with '__'", tag_string)
 		}
 		return false
 	}
 	if strings.Contains(tag_string, ":") {
 		if !strings.HasPrefix(tag_string, "Program") {
-			log.Printf("Skipping Tag: '%s' because it has a : but doesn't start with 'program' ", tag_string)
+			// log.Printf("Skipping Tag: '%s' because it has a : but doesn't start with 'program' ", tag_string)
 			return false
 		}
 
